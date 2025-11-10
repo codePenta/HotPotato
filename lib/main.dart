@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
+import 'package:provider/provider.dart';
+import 'package:hot_potato/ui/timer/widgets/timer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +13,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hot potato',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return ChangeNotifierProvider(
+      create: (_) => TimerViewmodel(),
+      child: MaterialApp(
+        title: 'Hot potato',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        home: TimerWidget(),
       ),
-      home: const MyHomePage(title: 'Game'),
     );
   }
 }
