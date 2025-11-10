@@ -16,10 +16,9 @@ class TimerViewmodel extends ChangeNotifier {
         isRunning = false;
       } else {
         gameTimer.remainingTime = gameTimer.getTimeLeft - oneSecond;
+        notifyListeners();
       }
     });
-
-    notifyListeners();
   }
 
   void stopTimer() {
