@@ -18,8 +18,8 @@ class MathChallengeViewModel extends ChangeNotifier {
     late int first, second;
 
     if (op == '÷') {
-      second = Random().nextInt(100) + 1;
-      final multiplicator = Random().nextInt(100) + 1;
+      second = Random().nextInt(12) + 1;
+      final multiplicator = Random().nextInt(10) + 1;
       first = second * multiplicator;
     } else {
       first = Random().nextInt(100);
@@ -40,7 +40,6 @@ class MathChallengeViewModel extends ChangeNotifier {
     final value = int.tryParse(input.trim());
     if (value == null) return false;
     final correct = _currentChallenge.correctAnswer;
-    print(correct);
     final isCorrect = value == correct;
     if (isCorrect) {
       // generate a new challenge automatically on correct answer

@@ -14,9 +14,9 @@ class TimerWidget extends StatelessWidget {
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         color: timerViewModel.showWrongPulse
-            ? Colors.red.withOpacity(0.75)
+            ? Color.fromRGBO(244, 67, 54, 0.75)
             : timerViewModel.showCorrectPulse
-            ? Colors.green.withOpacity(0.75)
+            ? Color.fromRGBO(76, 175, 80, 0.75)
             : Colors.transparent,
         child: Center(
           child: Column(
