@@ -1,24 +1,24 @@
 class GameTimer {
-  Duration _remainingTime;
+  Duration remainingTime;
 
-  GameTimer(Duration timeLeft) : _remainingTime = timeLeft;
+  late Duration totalDuration;
+
+  GameTimer(Duration timeLeft) : remainingTime = timeLeft {
+    totalDuration = timeLeft;
+  }
 
   Duration get getTimeLeft {
-    return _remainingTime;
+    return remainingTime;
   }
 
   String get getTimeLeftReadable {
-    int seconds = _remainingTime.inSeconds;
-    int milliseconds = _remainingTime.inMilliseconds % 1000;
+    int seconds = remainingTime.inSeconds;
+    int milliseconds = remainingTime.inMilliseconds % 1000;
 
-    if (_remainingTime.inSeconds <= 5) {
+    if (remainingTime.inSeconds <= 5) {
       return "$seconds:${milliseconds.toString().padLeft(3, '0')}";
     }
 
     return seconds.toString();
-  }
-
-  set remainingTime(Duration time) {
-    _remainingTime = time;
   }
 }
