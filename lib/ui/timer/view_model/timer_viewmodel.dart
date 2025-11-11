@@ -10,7 +10,7 @@ class TimerViewmodel extends ChangeNotifier {
 
   void startTimer() {
     isRunning = true;
-    const oneSecond = Duration(seconds: 1);
+    const oneSecond = Duration(milliseconds: 1);
     _timer = Timer.periodic(oneSecond, (Timer timer) {
       if (gameTimer.getTimeLeft.inSeconds <= 0) {
         isRunning = false;

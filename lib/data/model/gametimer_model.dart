@@ -8,14 +8,14 @@ class GameTimer {
   }
 
   String get getTimeLeftReadable {
-    String readableSeconds = _remainingTime.inSeconds.toString();
-    String readableMilliseconds = _remainingTime.inMilliseconds.toString();
+    int seconds = _remainingTime.inSeconds;
+    int milliseconds = _remainingTime.inMilliseconds % 1000;
 
     if (_remainingTime.inSeconds <= 5) {
-      return "$readableSeconds:$readableMilliseconds";
+      return "$seconds:${milliseconds.toString().padLeft(3, '0')}";
     }
 
-    return readableSeconds;
+    return seconds.toString();
   }
 
   set remainingTime(Duration time) {
