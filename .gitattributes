@@ -1,0 +1,4 @@
+*.cpp linguist-language=Dart
+*.cc linguist-language=Dart
+*.h linguist-language=Dart
+*.cmake linguist-vendored
