@@ -12,19 +12,12 @@ class MathChallengeViewModel extends ChangeNotifier {
   }
 
   void generateChallenge() {
-    const operators = ['+', '-', '×', '÷'];
+    const operators = ['+', '-'];
     final op = operators[Random().nextInt(operators.length)];
 
     late int first, second;
-
-    if (op == '÷') {
-      second = Random().nextInt(12) + 1;
-      final multiplicator = Random().nextInt(10) + 1;
-      first = second * multiplicator;
-    } else {
-      first = Random().nextInt(100);
-      second = Random().nextInt(100);
-    }
+    first = Random().nextInt(100);
+    second = Random().nextInt(100);
 
     _currentChallenge = MathChallengeModel(first, second, op);
     notifyListeners();
