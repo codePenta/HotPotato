@@ -8,31 +8,31 @@ class TimerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timerViewModel = Provider.of<TimerViewModel>(context);
+    final viewModel = Provider.of<TimerViewModel>(context);
 
     return Scaffold(
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        color: timerViewModel.showWrongPulse
+        color: viewModel.showWrongPulse
             ? Color.fromRGBO(244, 67, 54, 0.75)
-            : timerViewModel.showCorrectPulse
+            : viewModel.showCorrectPulse
             ? Color.fromRGBO(76, 175, 80, 0.75)
             : Colors.transparent,
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const MathChallengeWidget(),
+              ?viewModel.isRunning ? const MathChallengeWidget() : null,
               const SizedBox(height: 20),
               Text(
-                timerViewModel.gameTimer.getTimeLeftReadable,
+                viewModel.gameTimer.getTimeLeftReadable,
                 style: const TextStyle(fontSize: 60),
               ),
               const SizedBox(height: 12),
               SizedBox(
                 width: 300,
                 child: LinearProgressIndicator(
-                  value: timerViewModel.progress,
+                  value: viewModel.progress,
                   minHeight: 8,
                   backgroundColor: Colors.white24,
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.greenAccent),
@@ -43,7 +43,7 @@ class TimerWidget extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: timerViewModel.startTimer,
+        onPressed: viewModel.startTimer,
         child: Icon(Icons.start),
       ),
     );

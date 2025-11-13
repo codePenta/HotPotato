@@ -7,7 +7,6 @@ class MathChallengeViewModel extends ChangeNotifier {
   late MathChallengeModel _currentChallenge;
 
   MathChallengeViewModel() {
-    // create initial challenge
     generateChallenge();
   }
 
