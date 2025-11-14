@@ -8,10 +8,7 @@ class TimerViewModel extends ChangeNotifier {
   bool isRunning = false;
   Timer? _timer;
 
-  /// UI hint: when true the UI should show a wrong-answer pulse (e.g. red flash)
   bool showWrongPulse = false;
-
-  /// UI hint: when true the UI should show a correct-answer pulse (e.g. green flash)
   bool showCorrectPulse = false;
 
   double get progress {
@@ -46,8 +43,6 @@ class TimerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Subtract [penalty] from the remaining time. If the remaining time
-  /// reaches zero the timer will be stopped. Notifies listeners.
   void deductTime(Duration penalty) {
     final totalMs = gameTimer.totalDuration.inMilliseconds;
     final remainingMs =

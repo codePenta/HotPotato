@@ -26,15 +26,12 @@ class MathChallengeViewModel extends ChangeNotifier {
     return _currentChallenge.readableChallenge;
   }
 
-  /// Checks the user's input (string) against the correct answer.
-  /// Returns true if correct, false otherwise.
   bool checkAnswer(String input) {
     final value = int.tryParse(input.trim());
     if (value == null) return false;
     final correct = _currentChallenge.correctAnswer;
     final isCorrect = value == correct;
     if (isCorrect) {
-      // generate a new challenge automatically on correct answer
       generateChallenge();
     }
     notifyListeners();
