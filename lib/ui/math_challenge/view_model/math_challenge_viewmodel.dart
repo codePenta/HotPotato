@@ -15,8 +15,8 @@ class MathChallengeViewModel extends ChangeNotifier {
     final op = operators[Random().nextInt(operators.length)];
 
     late int first, second;
-    first = Random().nextInt(100);
-    second = Random().nextInt(100);
+    first = Random().nextInt(50);
+    second = Random().nextInt(50);
 
     _currentChallenge = MathChallengeModel(first, second, op);
     notifyListeners();
