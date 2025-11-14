@@ -24,6 +24,7 @@ class TimerWidget extends StatelessWidget {
             children: [
               ?viewModel.isRunning ? const MathChallengeWidget() : null,
               const SizedBox(height: 20),
+
               Text(
                 viewModel.gameTimer.getTimeLeftReadable,
                 style: const TextStyle(fontSize: 60),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hot_potato/ui/core/ui/animations/animated_entry_wrapper.dart';
 import 'package:hot_potato/ui/math_challenge/view_model/math_challenge_viewmodel.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -10,13 +11,20 @@ class MathChallengeWidget extends StatefulWidget {
   State<MathChallengeWidget> createState() => _MathChallengeWidgetState();
 }
 
-class _MathChallengeWidgetState extends State<MathChallengeWidget> {
+class _MathChallengeWidgetState extends State<MathChallengeWidget>
+    with TickerProviderStateMixin {
   final TextEditingController _inputController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    _inputController.dispose();
     super.dispose();
+
+    _inputController.dispose();
   }
 
   void _submitAnswer(BuildContext context) {
@@ -41,45 +49,47 @@ class _MathChallengeWidgetState extends State<MathChallengeWidget> {
   Widget build(BuildContext context) {
     final mathViewModel = Provider.of<MathChallengeViewModel>(context);
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            mathViewModel.getMathChallenge,
-            style: const TextStyle(fontSize: 40, color: Colors.white),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                width: 140,
-                child: TextField(
-                  controller: _inputController,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Result',
-                    isDense: true,
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 8,
+    return AnimatedEntryWrapper(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              mathViewModel.getMathChallenge,
+              style: const TextStyle(fontSize: 40, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: 140,
+                  child: TextField(
+                    controller: _inputController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Result',
+                      isDense: true,
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 8,
+                      ),
                     ),
+                    onSubmitted: (_) => _submitAnswer(context),
                   ),
-                  onSubmitted: (_) => _submitAnswer(context),
                 ),
-              ),
-              const SizedBox(width: 8),
-              ElevatedButton(
-                onPressed: () => _submitAnswer(context),
-                child: const Text('Submit'),
-              ),
-            ],
-          ),
-        ],
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: () => _submitAnswer(context),
+                  child: const Text('Submit'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
