@@ -41,6 +41,7 @@ class _MathChallengeWidgetState extends State<MathChallengeWidget>
       challengeViewModel.generateChallenge();
     } else {
       timerViewModel.triggerCorrectPulse();
+      timerViewModel.restartTimerAfterChallengeCompleted(correct);
       _inputController.clear();
     }
   }

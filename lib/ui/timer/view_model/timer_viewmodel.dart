@@ -5,11 +5,31 @@ import 'package:hot_potato/data/model/gametimer_model.dart';
 
 class TimerViewModel extends ChangeNotifier {
   final GameTimer gameTimer = GameTimer(Duration(seconds: 30));
-  bool isRunning = false;
   Timer? _timer;
 
   bool showWrongPulse = false;
   bool showCorrectPulse = false;
+
+  TimerViewModel() {}
+
+  void _handleTimerTick(Timer timer) {
+    const tick = Duration(milliseconds: 50);
+
+    if (gameTimer.getTimeLeft.inSeconds <= 0) {
+      stopTimer(); // Ruft die Methode der Instanz auf
+    } else {
+      gameTimer.remainingTime = gameTimer.getTimeLeft - tick;
+      notifyListeners();
+    }
+  }
+
+  bool get isSystemTimerRunning {
+    if (_timer == null) {
+      return false;
+    }
+
+    return _timer!.isActive;
+  }
 
   double get progress {
     final totalMS = gameTimer.totalDuration.inMilliseconds;
@@ -22,23 +42,23 @@ class TimerViewModel extends ChangeNotifier {
   }
 
   void startTimer() {
-    if (isRunning) return;
+    _timer?.cancel();
 
-    isRunning = true;
     const tick = Duration(milliseconds: 50);
-    _timer = Timer.periodic(tick, (Timer timer) {
-      if (gameTimer.getTimeLeft.inSeconds <= 0) {
-        stopTimer();
-      } else {
-        gameTimer.remainingTime = gameTimer.getTimeLeft - tick;
-        notifyListeners();
-      }
-    });
+
+    _timer = Timer.periodic(tick, _handleTimerTick);
+  }
+
+  void restartTimerAfterChallengeCompleted(bool isChallengeComplete) {
+    if (!isChallengeComplete) return;
+
+    _timer?.cancel();
+    gameTimer.setTimeLeft = gameTimer.totalDuration;
+    startTimer();
   }
 
   void stopTimer() {
     _timer?.cancel();
-    isRunning = false;
     gameTimer.remainingTime = Duration.zero;
     notifyListeners();
   }

@@ -11,6 +11,10 @@ class GameTimer {
     return remainingTime;
   }
 
+  set setTimeLeft(Duration timeLeft) {
+    remainingTime = timeLeft;
+  }
+
   String get getTimeLeftReadable {
     int seconds = remainingTime.inSeconds;
     int milliseconds = remainingTime.inMilliseconds % 1000;

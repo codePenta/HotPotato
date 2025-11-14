@@ -22,7 +22,9 @@ class TimerWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ?viewModel.isRunning ? const MathChallengeWidget() : null,
+              ?viewModel.isSystemTimerRunning
+                  ? const MathChallengeWidget()
+                  : null,
               const SizedBox(height: 20),
 
               Text(
