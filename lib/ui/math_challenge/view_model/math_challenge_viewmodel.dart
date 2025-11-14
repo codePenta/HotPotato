@@ -2,11 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hot_potato/data/model/math_challenge_model.dart';
-import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
 
 class MathChallengeViewModel extends ChangeNotifier {
   late MathChallengeModel _currentChallenge;
-  late TimerViewModel _timerViewModel;
 
   MathChallengeViewModel() {
     generateChallenge();
