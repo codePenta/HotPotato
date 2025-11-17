@@ -10,7 +10,7 @@ class TimerViewModel extends ChangeNotifier {
   bool showWrongPulse = false;
   bool showCorrectPulse = false;
 
-  TimerViewModel() {}
+  TimerViewModel();
 
   void _handleTimerTick(Timer timer) {
     const tick = Duration(milliseconds: 50);

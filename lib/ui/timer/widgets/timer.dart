@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
+import 'package:hot_potato/utils/animation_helper.dart';
 import 'package:provider/provider.dart'; // Import the Provider package
 import 'package:hot_potato/ui/math_challenge/widgets/math_challenge.dart';
 
@@ -13,11 +14,10 @@ class TimerWidget extends StatelessWidget {
     return Scaffold(
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        color: viewModel.showWrongPulse
-            ? Color.fromRGBO(244, 67, 54, 0.75)
-            : viewModel.showCorrectPulse
-            ? Color.fromRGBO(76, 175, 80, 0.75)
-            : Colors.transparent,
+        color: AnimationHelper.playPulse(
+          viewModel.showCorrectPulse,
+          viewModel.showWrongPulse,
+        ),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
