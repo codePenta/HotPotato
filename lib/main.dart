@@ -1,21 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:hot_potato/ui/main/widgets/main_widget.dart';
+import 'package:hot_potato/ui/math_challenge/view_model/math_challenge_viewmodel.dart';
+import 'package:hot_potato/ui/profiles/view_model/add_profile_viewmodel.dart';
+import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.blue,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+  State<MyApp> createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
+  List<SingleChildWidget> availableProviders = List.empty(growable: true);
+
+  @override
+  void initState() {
+    super.initState();
+
+    availableProviders.add(
+      ChangeNotifierProvider(
+        create: (context) {
+          return TimerViewModel();
+        },
       ),
-      home: MainWidget(),
+    );
+    availableProviders.add(
+      ChangeNotifierProvider(
+        create: (context) {
+          return MathChallengeViewModel();
+        },
+      ),
+    );
+    availableProviders.add(
+      ChangeNotifierProvider(
+        create: (context) {
+          return AddProfileViewModel();
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: availableProviders,
+      child: MaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.blue,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        home: MainWidget(),
+      ),
     );
   }
 }
