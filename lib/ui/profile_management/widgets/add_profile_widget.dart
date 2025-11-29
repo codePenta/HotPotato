@@ -14,9 +14,13 @@ class _AddProfileWidget extends State<AddProfileWidget>
     with TickerProviderStateMixin {
   final TextEditingController _inputController = TextEditingController();
 
+  bool _isProfileNameValid = false;
+
   @override
   void initState() {
     super.initState();
+
+    _inputController.addListener(_validateProfileName);
   }
 
   @override
@@ -67,12 +71,20 @@ class _AddProfileWidget extends State<AddProfileWidget>
             ),
           ),
           ElevatedButton(
-            onPressed: () => _addProfile(context, viewModel),
+            onPressed: _isProfileNameValid
+                ? () => _addProfile(context, viewModel)
+                : null,
             child: Text("Add"),
           ),
         ],
       ),
     );
+  }
+
+  void _validateProfileName() {
+    setState(() {
+      _isProfileNameValid = _inputController.value.text.isNotEmpty;
+    });
   }
 
   void _addProfile(BuildContext context, ManageProfilesViewModel viewModel) {

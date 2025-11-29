@@ -26,8 +26,9 @@ class _ManageProfilesWidget extends State<ManageProfilesWidget>
         child: viewModel.availableProfiles.isEmpty
             ? Text("No players added yet")
             : SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints.expand(height: 400, width: 500),
+                child: LimitedBox(
+                  maxHeight: 200,
+                  maxWidth: 200,
                   child: ListView.builder(
                     itemCount: viewModel.availableProfiles.length,
                     itemBuilder: (context, index) {
