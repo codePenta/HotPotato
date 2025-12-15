@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hot_potato/ui/main/widgets/main_widget.dart';
 import 'package:hot_potato/ui/math_challenge/view_model/math_challenge_viewmodel.dart';
-import 'package:hot_potato/ui/profile_management/view_models/profile_mangement_viewmodel.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -35,13 +34,6 @@ class _MyApp extends State<MyApp> {
       ChangeNotifierProvider(
         create: (context) {
           return MathChallengeViewModel();
-        },
-      ),
-    );
-    availableProviders.add(
-      ChangeNotifierProvider(
-        create: (context) {
-          return ManageProfilesViewModel();
         },
       ),
     );

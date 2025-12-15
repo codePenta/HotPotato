@@ -28,10 +28,6 @@ class _MathChallengeWidgetState extends State<MathChallengeWidget>
   }
 
   void _submitAnswer(BuildContext context, MathChallengeViewModel viewModel) {
-    // final challengeViewModel = Provider.of<MathChallengeViewModel>(
-    //   context,
-    //   listen: false,
-    // );
     final timerViewModel = Provider.of<TimerViewModel>(context, listen: false);
     final suggestedSolution = _inputController.text;
     final correct = viewModel.checkAnswer(suggestedSolution);
