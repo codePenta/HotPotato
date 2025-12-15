@@ -7,6 +7,10 @@ class GameTimer {
     totalDuration = timeLeft;
   }
 
+  bool get isGameRunning {
+    return remainingTime.inMilliseconds > 0;
+  }
+
   Duration get getTimeLeft {
     return remainingTime;
   }

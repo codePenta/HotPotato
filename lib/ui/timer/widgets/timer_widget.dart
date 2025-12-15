@@ -12,7 +12,7 @@ class TimerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<TimerViewModel>(context);
 
-    return viewModel.gameTimer.getTimeLeft.inSeconds == 0
+    return viewModel.gameTimer.isGameRunning
         ? GameEndingWidget()
         : Scaffold(
             body: AnimatedContainer(
