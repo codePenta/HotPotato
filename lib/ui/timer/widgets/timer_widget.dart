@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hot_potato/ui/ending/widgets/ending_widget.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
 import 'package:hot_potato/utils/animation_helper.dart';
 import 'package:provider/provider.dart'; // Import the Provider package
@@ -26,11 +27,12 @@ class TimerWidget extends StatelessWidget {
                   ? const MathChallengeWidget()
                   : null,
               const SizedBox(height: 20),
-
-              Text(
-                viewModel.gameTimer.getTimeLeftReadable,
-                style: const TextStyle(fontSize: 60),
-              ),
+              viewModel.gameTimer.getTimeLeft.inSeconds == 0
+                  ? EndingWidget()
+                  : Text(
+                      viewModel.gameTimer.getTimeLeftReadable,
+                      style: const TextStyle(fontSize: 60),
+                    ),
               const SizedBox(height: 12),
               SizedBox(
                 width: 300,
