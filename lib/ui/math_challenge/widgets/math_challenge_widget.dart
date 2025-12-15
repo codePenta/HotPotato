@@ -27,18 +27,14 @@ class _MathChallengeWidgetState extends State<MathChallengeWidget>
     _inputController.dispose();
   }
 
-  void _submitAnswer(BuildContext context) {
-    final challengeViewModel = Provider.of<MathChallengeViewModel>(
-      context,
-      listen: false,
-    );
+  void _submitAnswer(BuildContext context, MathChallengeViewModel viewModel) {
     final timerViewModel = Provider.of<TimerViewModel>(context, listen: false);
     final suggestedSolution = _inputController.text;
-    final correct = challengeViewModel.checkAnswer(suggestedSolution);
+    final correct = viewModel.checkAnswer(suggestedSolution);
     if (!correct) {
       timerViewModel.deductTime(const Duration(seconds: 3));
       timerViewModel.triggerWrongPulse();
-      challengeViewModel.generateChallenge();
+      viewModel.generateChallenge();
     } else {
       timerViewModel.triggerCorrectPulse();
       timerViewModel.restartTimerAfterChallengeCompleted(correct);
@@ -79,12 +75,12 @@ class _MathChallengeWidgetState extends State<MathChallengeWidget>
                         horizontal: 8,
                       ),
                     ),
-                    onSubmitted: (_) => _submitAnswer(context),
+                    onSubmitted: (_) => _submitAnswer(context, mathViewModel),
                   ),
                 ),
                 const SizedBox(width: 8),
                 ElevatedButton(
-                  onPressed: () => _submitAnswer(context),
+                  onPressed: () => _submitAnswer(context, mathViewModel),
                   child: const Text('Submit'),
                 ),
               ],

@@ -16,7 +16,7 @@ class TimerViewModel extends ChangeNotifier {
     const tick = Duration(milliseconds: 50);
 
     if (gameTimer.getTimeLeft.inSeconds <= 0) {
-      stopTimer(); // Ruft die Methode der Instanz auf
+      stopTimer();
     } else {
       gameTimer.remainingTime = gameTimer.getTimeLeft - tick;
       notifyListeners();
@@ -52,9 +52,13 @@ class TimerViewModel extends ChangeNotifier {
   void restartTimerAfterChallengeCompleted(bool isChallengeComplete) {
     if (!isChallengeComplete) return;
 
+    restartTimer();
+    startTimer();
+  }
+
+  void restartTimer() {
     _timer?.cancel();
     gameTimer.setTimeLeft = gameTimer.totalDuration;
-    startTimer();
   }
 
   void stopTimer() {

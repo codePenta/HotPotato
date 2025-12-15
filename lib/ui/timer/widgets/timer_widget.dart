@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
 import 'package:hot_potato/utils/animation_helper.dart';
 import 'package:provider/provider.dart'; // Import the Provider package
-import 'package:hot_potato/ui/math_challenge/widgets/math_challenge.dart';
+import 'package:hot_potato/ui/math_challenge/widgets/math_challenge_widget.dart';
 
 class TimerWidget extends StatelessWidget {
   const TimerWidget({super.key});
