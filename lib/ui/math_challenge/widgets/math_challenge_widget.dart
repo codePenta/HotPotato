@@ -76,6 +76,7 @@ class _MathChallengeWidgetState extends State<MathChallengeWidget>
                       ),
                     ),
                     onSubmitted: (_) => _submitAnswer(context, mathViewModel),
+                    textInputAction: TextInputAction.search,
                   ),
                 ),
                 const SizedBox(width: 8),
