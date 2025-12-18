@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hot_potato/ui/ending/widgets/game_ending_widget.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
@@ -5,8 +7,20 @@ import 'package:hot_potato/utils/animation_helper.dart';
 import 'package:provider/provider.dart'; // Import the Provider package
 import 'package:hot_potato/ui/math_challenge/widgets/math_challenge_widget.dart';
 
-class TimerWidget extends StatelessWidget {
+class TimerWidget extends StatefulWidget {
   const TimerWidget({super.key});
+
+  @override
+  State<TimerWidget> createState() => _TimerWidget();
+}
+
+class _TimerWidget extends State<TimerWidget> {
+  @override
+  void initState() {
+    super.initState();
+
+    log("Created Timer Widget");
+  }
 
   @override
   Widget build(BuildContext context) {
