@@ -40,18 +40,18 @@ class _AnimatedEntryWrapperState extends State<AnimatedEntryWrapper>
 
   @override
   void initState() {
-    super.initState();
-
     _offsetAnimationController.forward();
     _opacityAnimationController.forward();
+
+    super.initState();
   }
 
   @override
   void dispose() {
-    super.dispose();
-
     _offsetAnimationController.dispose();
     _opacityAnimationController.dispose();
+
+    super.dispose();
   }
 
   @override

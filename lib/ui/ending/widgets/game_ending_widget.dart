@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hot_potato/routing/route_paths.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
-import 'package:hot_potato/ui/timer/widgets/timer_widget.dart';
 import 'package:provider/provider.dart';
 
-class GameEndingWidget extends StatelessWidget {
-  final TextStyle headingStyle = TextStyle(fontSize: 20);
+class GameEndingWidget extends StatefulWidget {
+  const GameEndingWidget({super.key});
 
-  GameEndingWidget({super.key});
+  @override
+  State<StatefulWidget> createState() {
+    return _GameEndingWidget();
+  }
+}
+
+class _GameEndingWidget extends State<GameEndingWidget>
+    with TickerProviderStateMixin {
+  final TextStyle headingStyle = TextStyle(fontSize: 20);
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +29,7 @@ class GameEndingWidget extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               timerViewModel.restartTimer();
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => TimerWidget()),
-              );
+              Navigator.of(context).pushNamed(RoutePaths.homeRoute);
             },
             child: const Text("Start new game?"),
           ),
