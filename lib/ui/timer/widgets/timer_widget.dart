@@ -26,6 +26,25 @@ class _TimerWidget extends State<TimerWidget> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<TimerViewModel>(context);
 
+    var children = [
+      ?viewModel.isSystemTimerRunning ? const MathChallengeWidget() : null,
+      const SizedBox(height: 20),
+      Text(
+        viewModel.gameTimer.getTimeLeftReadable,
+        style: const TextStyle(fontSize: 60),
+      ),
+      const SizedBox(height: 12),
+      SizedBox(
+        width: 300,
+        child: LinearProgressIndicator(
+          value: viewModel.progress,
+          minHeight: 8,
+          backgroundColor: Colors.white24,
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+        ),
+      ),
+    ];
+
     return viewModel.gameTimer.getTimeLeft.inSeconds == 0
         ? GameEndingWidget()
         : Scaffold(
@@ -38,28 +57,7 @@ class _TimerWidget extends State<TimerWidget> {
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ?viewModel.isSystemTimerRunning
-                        ? const MathChallengeWidget()
-                        : null,
-                    const SizedBox(height: 20),
-                    Text(
-                      viewModel.gameTimer.getTimeLeftReadable,
-                      style: const TextStyle(fontSize: 60),
-                    ),
-                    const SizedBox(height: 12),
-                    SizedBox(
-                      width: 300,
-                      child: LinearProgressIndicator(
-                        value: viewModel.progress,
-                        minHeight: 8,
-                        backgroundColor: Colors.white24,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.greenAccent,
-                        ),
-                      ),
-                    ),
-                  ],
+                  children: children,
                 ),
               ),
             ),
