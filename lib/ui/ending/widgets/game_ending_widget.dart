@@ -19,21 +19,22 @@ class _GameEndingWidget extends State<GameEndingWidget>
   @override
   Widget build(BuildContext context) {
     var timerViewModel = Provider.of<TimerViewModel>(context);
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("Game Over!", style: headingStyle),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              timerViewModel.restartTimer();
-              Navigator.of(context).pushNamed(RoutePaths.homeRoute);
-            },
-            child: const Text("Start new game?"),
-          ),
-        ],
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Game Over!", style: headingStyle),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                timerViewModel.restartTimer();
+                Navigator.of(context).pushNamed(RoutePaths.homeRoute);
+              },
+              child: const Text("Start new game"),
+            ),
+          ],
+        ),
       ),
     );
   }

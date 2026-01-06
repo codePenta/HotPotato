@@ -11,9 +11,6 @@ class MainWidget extends StatefulWidget {
 class _MainWidget extends State<MainWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Hot potato')),
-      body: TimerWidget(),
-    );
+    return TimerWidget();
   }
 }
