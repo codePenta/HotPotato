@@ -21,6 +21,7 @@ class TimerView extends StatelessWidget {
     return Scaffold(
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
+        color: backgroundColor,
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
