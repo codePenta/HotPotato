@@ -1,7 +1,8 @@
 class MathChallengeModel {
-  final int firstNumber;
-  final int secondNumber;
-  final String operator;
+  int firstNumber = 0;
+  int secondNumber = 0;
+  String operator;
+  int guess = 0;
 
   MathChallengeModel(this.firstNumber, this.secondNumber, this.operator);
 
@@ -9,8 +10,10 @@ class MathChallengeModel {
     return "$firstNumber $operator $secondNumber";
   }
 
-  /// Compute the expected integer answer for this challenge.
-  /// For division ('÷') performs integer division using ~/ and avoids division by zero.
+  bool get solved {
+    return correctAnswer == guess;
+  }
+
   int get correctAnswer {
     switch (operator) {
       case '+':

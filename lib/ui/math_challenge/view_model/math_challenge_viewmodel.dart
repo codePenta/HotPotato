@@ -27,14 +27,22 @@ class MathChallengeViewModel extends ChangeNotifier {
   }
 
   bool checkAnswer(String input) {
-    final value = int.tryParse(input.trim());
-    if (value == null) return false;
-    final correct = _currentChallenge.correctAnswer;
-    final isCorrect = value == correct;
-    if (isCorrect) {
+    final inputAsInt = _convertInputToInt(input);
+    if (inputAsInt == null) return false;
+
+    _currentChallenge.guess = inputAsInt;
+    bool solved = _currentChallenge.solved;
+
+    if (solved) {
       generateChallenge();
     }
     notifyListeners();
-    return isCorrect;
+    return solved;
+  }
+
+  int? _convertInputToInt(String input) {
+    final trimmed = input.trim();
+    final value = int.tryParse(trimmed);
+    return value;
   }
 }
