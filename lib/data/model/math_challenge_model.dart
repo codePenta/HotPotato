@@ -1,10 +1,15 @@
 class MathChallengeModel {
   int firstNumber = 0;
   int secondNumber = 0;
-  String operator;
+  String operator = '+';
   int guess = 0;
 
   MathChallengeModel(this.firstNumber, this.secondNumber, this.operator);
+
+  MathChallengeModel.empty() {
+    firstNumber = 0;
+    secondNumber = 0;
+  }
 
   String get readableChallenge {
     return "$firstNumber $operator $secondNumber";

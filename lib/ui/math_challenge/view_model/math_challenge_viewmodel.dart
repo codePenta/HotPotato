@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hot_potato/data/model/math_challenge_model.dart';
 
 class MathChallengeViewModel extends ChangeNotifier {
-  late MathChallengeModel _currentChallenge;
+  MathChallengeModel get currentChallenge => MathChallengeModel.empty();
 
   MathChallengeViewModel() {
     generateChallenge();
@@ -18,20 +18,23 @@ class MathChallengeViewModel extends ChangeNotifier {
     first = Random().nextInt(50);
     second = Random().nextInt(50);
 
-    _currentChallenge = MathChallengeModel(first, second, op);
+    currentChallenge.firstNumber = first;
+    currentChallenge.secondNumber = second;
+    currentChallenge.operator = op;
+
     notifyListeners();
   }
 
   String get getMathChallenge {
-    return _currentChallenge.readableChallenge;
+    return currentChallenge.readableChallenge;
   }
 
   bool checkAnswer(String input) {
     final inputAsInt = _convertInputToInt(input);
     if (inputAsInt == null) return false;
 
-    _currentChallenge.guess = inputAsInt;
-    bool solved = _currentChallenge.solved;
+    currentChallenge.guess = inputAsInt;
+    bool solved = currentChallenge.solved;
 
     if (solved) {
       generateChallenge();

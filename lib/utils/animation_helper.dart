@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AnimationHelper {
-  static Color playPulse(bool goodCondition, bool badCondition) {
-    if (goodCondition) {
+  static Color playPulse(bool solved) {
+    if (solved) {
       return positiveColor;
-    } else if (badCondition) {
-      return negativeColor;
     }
 
-    return Colors.transparent;
+    return negativeColor;
   }
 
   static Color get positiveColor {
