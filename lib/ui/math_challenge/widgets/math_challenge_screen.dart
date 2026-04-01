@@ -17,7 +17,6 @@ class _MathChallengeScreenState extends State<MathChallengeScreen> {
   @override
   void dispose() {
     super.dispose();
-
     _inputController.dispose();
   }
 

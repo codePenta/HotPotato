@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:hot_potato/data/model/math_challenge_model.dart';
 
 class MathChallengeViewModel extends ChangeNotifier {
-  MathChallengeModel get currentChallenge => MathChallengeModel.empty();
+  late MathChallengeModel _currentChallenge;
+
+  MathChallengeModel get currentChallenge => _currentChallenge;
 
   MathChallengeViewModel() {
+    _currentChallenge = MathChallengeModel();
     generateChallenge();
   }
 

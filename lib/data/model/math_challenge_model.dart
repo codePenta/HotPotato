@@ -4,7 +4,9 @@ class MathChallengeModel {
   String operator = '+';
   int guess = 0;
 
-  MathChallengeModel(this.firstNumber, this.secondNumber, this.operator);
+  MathChallengeModel();
+
+  MathChallengeModel.setup(this.firstNumber, this.secondNumber, this.operator);
 
   MathChallengeModel.empty() {
     firstNumber = 0;
