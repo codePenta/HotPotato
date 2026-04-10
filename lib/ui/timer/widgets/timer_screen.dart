@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hot_potato/ui/ending/widgets/game_ending_widget.dart';
-import 'package:hot_potato/ui/math_challenge/view_model/math_challenge_viewmodel.dart';
 import 'package:hot_potato/ui/math_challenge/widgets/math_challenge_screen.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
 import 'package:hot_potato/ui/timer/widgets/timer_view.dart';
@@ -12,23 +11,23 @@ class TimerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timerViewModel = context.watch<TimerViewModel>();
-    final mathViewModel = context.watch<MathChallengeViewModel>();
+    final viewModel = context.watch<TimerViewModel>();
 
-    if (timerViewModel.gameTimer.getTimeLeft.inSeconds == 0) {
+    if (viewModel.gameTimer.getTimeLeft.inSeconds == 0) {
       return const GameEndingWidget();
     }
 
     return TimerView(
-      timeText: timerViewModel.gameTimer.getTimeLeftReadable,
-      progress: timerViewModel.progress,
+      timeText: viewModel.gameTimer.getTimeLeftReadable,
+      progress: viewModel.progress,
       backgroundColor: AnimationHelper.playPulse(
-        mathViewModel.currentChallenge.solved,
+        viewModel.showCorrectPulse,
+        viewModel.showWrongPulse,
       ),
-      challengeWidget: timerViewModel.isSystemTimerRunning
+      challengeWidget: viewModel.isSystemTimerRunning
           ? const MathChallengeScreen()
           : const SizedBox.shrink(),
-      onStartCallback: timerViewModel.startTimer,
+      onStartCallback: viewModel.startTimer,
     );
   }
 }
