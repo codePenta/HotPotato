@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hot_potato/routing/route_paths.dart';
 import 'package:hot_potato/ui/ending/widgets/game_ending_widget.dart';
 import 'package:hot_potato/ui/main/widgets/main_widget.dart';
+import 'package:hot_potato/ui/timer/widgets/timer_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -10,6 +11,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => MainWidget());
       case RoutePaths.endingRoute:
         return MaterialPageRoute(builder: (_) => GameEndingWidget());
+      case RoutePaths.startRoute:
+        return MaterialPageRoute(builder: (_) => TimerScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

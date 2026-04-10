@@ -29,7 +29,7 @@ class _GameEndingWidget extends State<GameEndingWidget>
             ElevatedButton(
               onPressed: () {
                 timerViewModel.restartTimer();
-                Navigator.of(context).pushNamed(RoutePaths.homeRoute);
+                Navigator.of(context).pushNamed(RoutePaths.startRoute);
               },
               child: const Text("Start new game"),
             ),
