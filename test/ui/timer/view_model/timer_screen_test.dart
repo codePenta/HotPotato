@@ -1,13 +1,35 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
+import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
 import 'package:hot_potato/ui/timer/widgets/timer_screen.dart';
 
 void main() {
-  testWidgets('Timer starts with value 30', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const TimerScreen());
+  testWidgets('Timer is initialized with value 30', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      ChangeNotifierProvider<TimerViewModel>(
+        create: (_) => TimerViewModel(),
+        child: const MaterialApp(home: TimerScreen()),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
     expect(find.text('30'), findsOneWidget);
+  });
+
+  testWidgets('Timer runs until the end', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      ChangeNotifierProvider<TimerViewModel>(
+        create: (_) => TimerViewModel(),
+        child: const MaterialApp(home: TimerScreen()),
+      ),
+    );
+
+    expect(find.text('30'), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.start));
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.text('29'), findsOneWidget);
   });
 }
