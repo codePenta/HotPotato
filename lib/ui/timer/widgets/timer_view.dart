@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hot_potato/ui/core/ui/animations/animated_pulse_text.dart';
-import 'package:hot_potato/ui/core/ui/animations/animated_progress_bar.dart';
 
 class TimerView extends StatefulWidget {
   final String timeText;
@@ -28,6 +26,12 @@ class _TimerViewState extends State<TimerView> with TickerProviderStateMixin {
   late AnimationController _fabAnimationController;
   late Animation<double> _fabScaleAnimation;
   late Animation<double> _fabOpacityAnimation;
+
+  Color _getTimerColor(double progress) {
+    if (progress > 0.5) return Colors.greenAccent;
+    if (progress > 0.2) return Colors.orangeAccent;
+    return Colors.redAccent;
+  }
 
   @override
   void initState() {
@@ -98,12 +102,16 @@ class _TimerViewState extends State<TimerView> with TickerProviderStateMixin {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeOutCubic,
+              duration: const Duration(milliseconds: 100),
+              curve: Curves.linear,
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 color: widget.backgroundColor,
-                borderRadius: BorderRadius.circular(28),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: _getTimerColor(widget.progress).withOpacity(0.3),
+                  width: 4,
+                ),
                 boxShadow: [
                   const BoxShadow(
                     color: Color(0x29000000),
@@ -115,24 +123,67 @@ class _TimerViewState extends State<TimerView> with TickerProviderStateMixin {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  widget.challengeWidget,
-                  const SizedBox(height: 24),
-                  AnimatedPulseText(
-                    child: Text(
-                      widget.timeText,
-                      style: theme.textTheme.displayLarge,
-                      textAlign: TextAlign.center,
-                    ),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) {
+                          return SlideTransition(
+                            position:
+                                Tween<Offset>(
+                                  begin: const Offset(0, -1),
+                                  end: Offset.zero,
+                                ).animate(
+                                  CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeOutCubic,
+                                  ),
+                                ),
+                            child: FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            ),
+                          );
+                        },
+                    child: widget.isTimerRunning
+                        ? widget.challengeWidget
+                        : const SizedBox.shrink(),
                   ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: 300,
-                    child: AnimatedProgressBar(
-                      value: widget.progress,
-                      minHeight: 8,
-                      backgroundColor: Colors.white24,
-                      valueColor: Colors.greenAccent,
-                    ),
+                  const SizedBox(height: 24),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        width: 150,
+                        height: 150,
+                        child: CircularProgressIndicator(
+                          value: widget.progress,
+                          strokeWidth: 7,
+                          backgroundColor: Colors.white24,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            _getTimerColor(widget.progress),
+                          ),
+                        ),
+                      ),
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 200),
+                        transitionBuilder:
+                            (Widget child, Animation<double> animation) {
+                              return ScaleTransition(
+                                scale: animation,
+                                child: child,
+                              );
+                            },
+                        child: Text(
+                          widget.timeText,
+                          key: ValueKey<String>(widget.timeText),
+                          style: theme.textTheme.displayLarge?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

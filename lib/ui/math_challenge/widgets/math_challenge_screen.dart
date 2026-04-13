@@ -13,11 +13,13 @@ class MathChallengeScreen extends StatefulWidget {
 
 class _MathChallengeScreenState extends State<MathChallengeScreen> {
   final TextEditingController _inputController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void dispose() {
-    super.dispose();
     _inputController.dispose();
+    _focusNode.dispose();
+    super.dispose();
   }
 
   void _submitAnswer(
@@ -33,8 +35,10 @@ class _MathChallengeScreenState extends State<MathChallengeScreen> {
     } else {
       timerViewModel.triggerCorrectPulse();
       timerViewModel.restartTimerAfterChallengeCompleted(correct);
-      _inputController.clear();
     }
+
+    _focusNode.requestFocus();
+    _inputController.clear();
   }
 
   @override
@@ -45,6 +49,7 @@ class _MathChallengeScreenState extends State<MathChallengeScreen> {
     return MathChallengeView(
       mathChallenge: mathViewModel.getMathChallenge,
       editingController: _inputController,
+      focusNode: _focusNode,
       onSubmitCallback: () => _submitAnswer(mathViewModel, timerViewModel),
     );
   }

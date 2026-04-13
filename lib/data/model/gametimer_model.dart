@@ -20,13 +20,14 @@ class GameTimer {
   }
 
   String get getTimeLeftReadable {
-    int seconds = remainingTime.inSeconds;
-    int milliseconds = remainingTime.inMilliseconds % 1000;
+    int totalSeconds = remainingTime.inSeconds;
 
-    if (remainingTime.inSeconds <= 5) {
-      return "$seconds:${milliseconds.toString().padLeft(3, '0')}";
+    if (totalSeconds <= 10) {
+      int minutes = totalSeconds ~/ 60;
+      int seconds = totalSeconds % 60;
+      return "$minutes:${seconds.toString().padLeft(2, '0')}";
     }
 
-    return seconds.toString();
+    return totalSeconds.toString();
   }
 }

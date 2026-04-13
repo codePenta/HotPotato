@@ -2,15 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hot_potato/data/model/gametimer_model.dart';
+import 'package:hot_potato/data/service/timer_service.dart';
 
 class TimerViewModel extends ChangeNotifier {
-  final GameTimer gameTimer = GameTimer(Duration(seconds: 30));
+  late GameTimer gameTimer;
   Timer? _timer;
+  final TimerService _service = TimerService();
 
   bool showWrongPulse = false;
   bool showCorrectPulse = false;
 
-  TimerViewModel();
+  TimerViewModel() {
+    gameTimer = _service.getTimer();
+  }
 
   void _handleTimerTick(Timer timer) {
     const tick = Duration(milliseconds: 50);

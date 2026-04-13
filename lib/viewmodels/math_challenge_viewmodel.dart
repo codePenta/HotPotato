@@ -1,30 +1,19 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:hot_potato/data/model/math_challenge_model.dart';
+import 'package:hot_potato/data/service/math_challenge_service.dart';
 
 class MathChallengeViewModel extends ChangeNotifier {
   late MathChallengeModel _currentChallenge;
+  final MathChallengeService _service = MathChallengeService();
 
   MathChallengeModel get currentChallenge => _currentChallenge;
 
   MathChallengeViewModel() {
-    _currentChallenge = MathChallengeModel();
-    generateChallenge();
+    _currentChallenge = _service.createChallenge();
   }
 
   void generateChallenge() {
-    const operators = ['+', '-'];
-    final op = operators[Random().nextInt(operators.length)];
-
-    late int first, second;
-    first = Random().nextInt(50);
-    second = Random().nextInt(50);
-
-    currentChallenge.firstNumber = first;
-    currentChallenge.secondNumber = second;
-    currentChallenge.operator = op;
-
+    _currentChallenge = _service.createChallenge();
     notifyListeners();
   }
 

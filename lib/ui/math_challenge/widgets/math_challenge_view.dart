@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'math_challenge_parser.dart';
+import 'result_input_field.dart';
 
 class MathChallengeView extends StatefulWidget {
   final String mathChallenge;
   final TextEditingController editingController;
+  final FocusNode focusNode;
   final VoidCallback onSubmitCallback;
 
   const MathChallengeView({
     super.key,
     required this.mathChallenge,
     required this.editingController,
+    required this.focusNode,
     required this.onSubmitCallback,
   });
 
@@ -17,6 +21,8 @@ class MathChallengeView extends StatefulWidget {
 }
 
 class _MathChallengeViewState extends State<MathChallengeView> {
+  final _parser = MathChallengeParser();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -32,60 +38,17 @@ class _MathChallengeViewState extends State<MathChallengeView> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                widget.mathChallenge.isEmpty ? '? + ?' : widget.mathChallenge,
-                style: theme.textTheme.displayLarge?.copyWith(
-                  color: theme.colorScheme.onSecondaryContainer,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              _parser.buildChallengeText(widget.mathChallenge, theme),
               const SizedBox(height: 12),
-              _ResultInputField(
+              ResultInputField(
                 editingController: widget.editingController,
+                focusNode: widget.focusNode,
                 onSubmitCallback: widget.onSubmitCallback,
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _ResultInputField extends StatelessWidget {
-  final TextEditingController editingController;
-  final VoidCallback onSubmitCallback;
-
-  const _ResultInputField({
-    required this.editingController,
-    required this.onSubmitCallback,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          width: 140,
-          child: TextField(
-            controller: editingController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Result',
-              isDense: true,
-              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-            ),
-            onSubmitted: (_) => onSubmitCallback(),
-          ),
-        ),
-        const SizedBox(width: 8),
-        ElevatedButton(
-          onPressed: () => onSubmitCallback(),
-          child: const Text('Submit'),
-        ),
-      ],
     );
   }
 }
