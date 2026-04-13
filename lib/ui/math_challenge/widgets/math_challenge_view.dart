@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hot_potato/ui/core/ui/animations/animated_entry_wrapper.dart';
-import 'package:hot_potato/ui/core/ui/animations/animated_content_change.dart';
 
 class MathChallengeView extends StatefulWidget {
   final String mathChallenge;
