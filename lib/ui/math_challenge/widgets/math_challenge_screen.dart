@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hot_potato/ui/math_challenge/view_model/math_challenge_viewmodel.dart';
+import 'package:hot_potato/viewmodels/math_challenge_viewmodel.dart';
 import 'package:hot_potato/ui/math_challenge/widgets/math_challenge_view.dart';
-import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
+import 'package:hot_potato/viewmodels/timer_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class MathChallengeScreen extends StatefulWidget {

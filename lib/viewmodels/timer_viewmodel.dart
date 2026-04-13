@@ -47,6 +47,7 @@ class TimerViewModel extends ChangeNotifier {
     const tick = Duration(milliseconds: 50);
 
     _timer = Timer.periodic(tick, _handleTimerTick);
+    notifyListeners();
   }
 
   void restartTimerAfterChallengeCompleted(bool isChallengeComplete) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hot_potato/ui/core/ui/animations/animated_entry_wrapper.dart';
+import 'package:hot_potato/ui/core/ui/animations/animated_content_change.dart';
 
-class MathChallengeView extends StatelessWidget {
+class MathChallengeView extends StatefulWidget {
   final String mathChallenge;
   final TextEditingController editingController;
   final VoidCallback onSubmitCallback;
@@ -14,10 +15,16 @@ class MathChallengeView extends StatelessWidget {
   });
 
   @override
+  State<MathChallengeView> createState() => _MathChallengeViewState();
+}
+
+class _MathChallengeViewState extends State<MathChallengeView> {
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return AnimatedEntryWrapper(
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 300),
       child: Card(
         color: theme.colorScheme.secondaryContainer,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -28,7 +35,7 @@ class MathChallengeView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                mathChallenge,
+                widget.mathChallenge.isEmpty ? '? + ?' : widget.mathChallenge,
                 style: theme.textTheme.displayLarge?.copyWith(
                   color: theme.colorScheme.onSecondaryContainer,
                 ),
@@ -36,8 +43,8 @@ class MathChallengeView extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               _ResultInputField(
-                editingController: editingController,
-                onSubmitCallback: onSubmitCallback,
+                editingController: widget.editingController,
+                onSubmitCallback: widget.onSubmitCallback,
               ),
             ],
           ),

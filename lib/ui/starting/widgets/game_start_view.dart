@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hot_potato/ui/core/ui/animations/animated_slide_in_card.dart';
+import 'package:hot_potato/ui/core/ui/animations/animated_pulse_button.dart';
 
 class GameStartView extends StatelessWidget {
   final String greetingsText;
@@ -25,37 +27,42 @@ class GameStartView extends StatelessWidget {
         ),
         child: SafeArea(
           child: Center(
-            child: Card(
-              elevation: 12,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28),
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 24),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 32,
-                  horizontal: 24,
+            child: AnimatedSlideInCard(
+              child: Card(
+                elevation: 12,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(28),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      greetingsText,
-                      style: theme.textTheme.headlineMedium,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'Bereit für eine Runde Hot Potato? Drücke Start und beginne.',
-                      style: theme.textTheme.bodyLarge,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 28),
-                    ElevatedButton(
-                      onPressed: onStartCallback,
-                      child: const Text('Start'),
-                    ),
-                  ],
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 32,
+                    horizontal: 24,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        greetingsText,
+                        style: theme.textTheme.headlineMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Bereit für eine Runde Hot Potato? Drücke Start und beginne.',
+                        style: theme.textTheme.bodyLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 28),
+                      AnimatedPulseButton(
+                        onPressed: onStartCallback,
+                        child: ElevatedButton(
+                          onPressed: onStartCallback,
+                          child: const Text('Start'),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

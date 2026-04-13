@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hot_potato/viewmodels/timer_viewmodel.dart';
 import 'package:provider/provider.dart';
-
-import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
 import 'package:hot_potato/ui/timer/widgets/timer_screen.dart';
 
 void main() {
