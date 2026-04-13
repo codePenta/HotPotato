@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hot_potato/routing/route_paths.dart';
 import 'package:hot_potato/routing/router.dart';
+import 'package:hot_potato/ui/core/ui/app_theme.dart';
 import 'package:hot_potato/ui/main/widgets/main_widget.dart';
 import 'package:hot_potato/ui/math_challenge/view_model/math_challenge_viewmodel.dart';
 import 'package:hot_potato/ui/timer/view_model/timer_viewmodel.dart';
@@ -48,10 +49,7 @@ class _MyApp extends State<MyApp> {
       child: MaterialApp(
         initialRoute: RoutePaths.homeRoute,
         onGenerateRoute: AppRouter.generateRoute,
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.blue,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
+        theme: AppTheme.light,
         home: MainWidget(),
       ),
     );

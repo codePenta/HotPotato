@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class GameStartView extends StatelessWidget {
   final String greetingsText;
   final VoidCallback onStartCallback;
-  final TextStyle headingStyle = const TextStyle(fontSize: 20);
 
   const GameStartView({
     super.key,
@@ -13,20 +12,53 @@ class GameStartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: Container(
-        color: Colors.blue,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(greetingsText, style: headingStyle),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: onStartCallback,
-                child: const Text("Start"),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF7C4DFF), Color(0xFF4A148C)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: Card(
+              elevation: 12,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(28),
               ),
-            ],
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 32,
+                  horizontal: 24,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      greetingsText,
+                      style: theme.textTheme.headlineMedium,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Bereit für eine Runde Hot Potato? Drücke Start und beginne.',
+                      style: theme.textTheme.bodyLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 28),
+                    ElevatedButton(
+                      onPressed: onStartCallback,
+                      child: const Text('Start'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ),

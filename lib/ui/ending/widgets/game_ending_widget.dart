@@ -14,26 +14,60 @@ class GameEndingWidget extends StatefulWidget {
 
 class _GameEndingWidget extends State<GameEndingWidget>
     with TickerProviderStateMixin {
-  final TextStyle headingStyle = TextStyle(fontSize: 20);
-
   @override
   Widget build(BuildContext context) {
-    var timerViewModel = Provider.of<TimerViewModel>(context);
+    final theme = Theme.of(context);
+    final timerViewModel = Provider.of<TimerViewModel>(context);
+
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text("Game Over!", style: headingStyle),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                timerViewModel.restartTimer();
-                Navigator.of(context).pushNamed(RoutePaths.startRoute);
-              },
-              child: const Text("Start new game"),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF312244), Color(0xFF4A148C)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: Card(
+              elevation: 14,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(28),
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 32,
+                  horizontal: 24,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Game Over!',
+                      style: theme.textTheme.headlineMedium,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Du hast es geschafft. Möchtest du noch einmal spielen? ',
+                      style: theme.textTheme.bodyLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 24),
+                    ElevatedButton(
+                      onPressed: () {
+                        timerViewModel.restartTimer();
+                        Navigator.of(context).pushNamed(RoutePaths.startRoute);
+                      },
+                      child: const Text('Neues Spiel starten'),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ],
+          ),
         ),
       ),
     );

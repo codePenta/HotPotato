@@ -15,23 +15,32 @@ class MathChallengeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AnimatedEntryWrapper(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              mathChallenge,
-              style: const TextStyle(fontSize: 40, color: Colors.white),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            _ResultInputField(
-              editingController: editingController,
-              onSubmitCallback: onSubmitCallback,
-            ),
-          ],
+      child: Card(
+        color: theme.colorScheme.secondaryContainer,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        elevation: 10,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 18.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                mathChallenge,
+                style: theme.textTheme.displayLarge?.copyWith(
+                  color: theme.colorScheme.onSecondaryContainer,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              _ResultInputField(
+                editingController: editingController,
+                onSubmitCallback: onSubmitCallback,
+              ),
+            ],
+          ),
         ),
       ),
     );

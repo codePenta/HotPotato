@@ -27,6 +27,7 @@ class TimerScreen extends StatelessWidget {
       challengeWidget: viewModel.isSystemTimerRunning
           ? const MathChallengeScreen()
           : const SizedBox.shrink(),
+      isTimerRunning: viewModel.isSystemTimerRunning,
       onStartCallback: viewModel.startTimer,
     );
   }
