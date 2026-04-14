@@ -61,7 +61,7 @@ class _GameEndingWidget extends State<GameEndingWidget> {
                         delay: const Duration(milliseconds: 400),
                         slideOffset: const Offset(0, -0.5),
                         child: Text(
-                          'Du hast es geschafft. Möchtest du noch einmal spielen?',
+                          'Die Zeit ist abgelaufen. Möchtest du noch einmal spielen?',
                           style: theme.textTheme.bodyLarge,
                           textAlign: TextAlign.center,
                         ),
