@@ -149,8 +149,8 @@ Definiert das gesamte Farbschema:
 
 ### Haupt-Entry-Points
 - `lib/main.dart` - App-Startpunkt
-- `lib/main_development.dart` - Entwicklungsmodus
-- `lib/main_staging.dart` - Testmodus
+- `lib/main_development.dart` - Entwicklungsmodus (Wird aktuell nicht verwendet)
+- `lib/main_staging.dart` - Testmodus (Wird aktuell Nicht verwendet)
 
 ### Services
 - `lib/data/service/math_challenge_service.dart` - Aufgaben generieren
