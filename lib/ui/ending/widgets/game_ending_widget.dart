@@ -3,7 +3,7 @@ import 'package:hot_potato/routing/route_paths.dart';
 import 'package:hot_potato/ui/core/ui/animations/animated_bounce_in.dart';
 import 'package:hot_potato/ui/core/ui/animations/animated_slide_in_card.dart';
 import 'package:hot_potato/ui/core/ui/animations/animated_pulse_button.dart';
-import 'package:hot_potato/viewmodels/timer_viewmodel.dart';
+import 'package:hot_potato/view_models/timer_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class GameEndingWidget extends StatefulWidget {

@@ -3,8 +3,8 @@ import 'package:hot_potato/routing/route_paths.dart';
 import 'package:hot_potato/routing/router.dart';
 import 'package:hot_potato/ui/core/ui/app_theme.dart';
 import 'package:hot_potato/ui/main/widgets/main_widget.dart';
-import 'package:hot_potato/viewmodels/math_challenge_viewmodel.dart';
-import 'package:hot_potato/viewmodels/timer_viewmodel.dart';
+import 'package:hot_potato/view_models/math_challenge_viewmodel.dart';
+import 'package:hot_potato/view_models/timer_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
