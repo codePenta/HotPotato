@@ -19,7 +19,7 @@ class TimerViewModel extends ChangeNotifier {
   void _handleTimerTick(Timer timer) {
     const tick = Duration(milliseconds: 50);
 
-    if (gameTimer.getTimeLeft.inSeconds <= 0) {
+    if (gameTimer.getTimeLeft.inMilliseconds <= 0) {
       stopTimer();
     } else {
       gameTimer.remainingTime = gameTimer.getTimeLeft - tick;
