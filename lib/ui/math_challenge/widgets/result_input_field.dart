@@ -32,7 +32,7 @@ class ResultInputField extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Theme.of(context).colorScheme.outline.withOpacity(0.3),
+          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
           width: 1.5,
         ),
       ),
@@ -62,7 +62,7 @@ class ResultInputField extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),

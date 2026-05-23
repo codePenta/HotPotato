@@ -20,17 +20,20 @@ void main() {
         expect(color, Colors.transparent);
       });
 
-      test('returns positiveColor when both conditions are true (good takes priority)', () {
-        final color = AnimationHelper.playPulse(true, true);
-        expect(color, AnimationHelper.positiveColor);
-      });
+      test(
+        'returns positiveColor when both conditions are true (good takes priority)',
+        () {
+          final color = AnimationHelper.playPulse(true, true);
+          expect(color, AnimationHelper.positiveColor);
+        },
+      );
     });
 
     group('positiveColor', () {
       test('is a green-ish color with opacity', () {
         final color = AnimationHelper.positiveColor;
         expect(color, isA<Color>());
-        expect(color.opacity, closeTo(0.75, 0.01));
+        expect(color.a, closeTo(0.75, 0.01));
         expect(color.green, greaterThan(color.red));
       });
     });
@@ -39,7 +42,7 @@ void main() {
       test('is a red-ish color with opacity', () {
         final color = AnimationHelper.negativeColor;
         expect(color, isA<Color>());
-        expect(color.opacity, closeTo(0.75, 0.01));
+        expect(color.a, closeTo(0.75, 0.01));
         expect(color.red, greaterThan(color.green));
       });
     });

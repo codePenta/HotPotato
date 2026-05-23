@@ -109,7 +109,7 @@ class _TimerViewState extends State<TimerView> with TickerProviderStateMixin {
                 color: widget.backgroundColor,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: _getTimerColor(widget.progress).withOpacity(0.3),
+                  color: _getTimerColor(widget.progress).withValues(alpha: 0.3),
                   width: 4,
                 ),
                 boxShadow: [
