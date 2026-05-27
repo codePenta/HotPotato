@@ -34,7 +34,7 @@ void main() {
         final color = AnimationHelper.positiveColor;
         expect(color, isA<Color>());
         expect(color.a, closeTo(0.75, 0.01));
-        expect(color.green, greaterThan(color.red));
+        expect(color.g, greaterThan(color.r));
       });
     });
 
@@ -43,7 +43,7 @@ void main() {
         final color = AnimationHelper.negativeColor;
         expect(color, isA<Color>());
         expect(color.a, closeTo(0.75, 0.01));
-        expect(color.red, greaterThan(color.green));
+        expect(color.r, greaterThan(color.g));
       });
     });
   });
